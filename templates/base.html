@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+       Ломбард
+    {% endblock %}</title>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}" >
+</head>
+<body>
+<header>
+    <div class="left">
+        <a href="{% url 'home' %}">Головна</a>
+    </div>
+    <div class="right">
+        <a href="{% url 'new_item' %}">Новий предмет</a>
+    </div>
+</header>
+{% block content %}
+    <main> <h1 style="text-align: center">Hello from offline page</h1></main>
+
+{% endblock %}
+{% block scripts %}
+    <script>
+        {% load static %}
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register("{% static 'js/sw.js' %}")
+        }
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Клієнт {{ client.last_name }}
+{% endblock %}
+
+{% block content %}
+    <div class="client-info">
+    <h2> {{ client.first_name }} <strong>{{ client.last_name }}</strong> </h2>
+    <p class="item-field"> Вік: {{ client.age }} Номер паспорта: {{ client.passport_num }}</p>
+    {% for item in client.item_set.all %}
+        <p class="item-field"><a href="{{ item.get_absolute_url }}">{{ item }}</a></p>
+    {% endfor %}
+    <input type="button" class="delete" onclick="deleteMe()" value="Видалити клiєнта">
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function deleteMe() {
+            fetch('/api/clients/{{ client.id }}', {method: 'DELETE'})
+            alert("Deleted!")
+            window.location.href = "/"
+        }
+    </script>
+{% endblock %}

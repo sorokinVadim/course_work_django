@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Товар {{ item.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="item-info">
+    <h2>{{ item.name }}</h2>
+    {% if item.owner %}
+        <p class="item-field"><a href="{{ item.owner.get_absolute_url }}">Власник: {{ item.owner.first_name }} {{ item.owner.last_name }}</a><p>
+        <p class="item-field"> Зберігається до {{ item.save_until }}</p>
+        <p class="item-field">Сума, видана під заставу {{ item.amount_pledged }}</p>
+        <p class="item-field">Дата здачи {{ item.date_make }}</p>
+    {% endif %}
+    <p class="item-field">Оціночна вартість {{ item.estimated_cost }}</p>
+        {% if item.owner %}
+            <input type="button" class="delete" onclick="deleteMe()" value="Повернути" />
+        {% else %}
+            <input type="button" class="delete" onclick="deleteMe()" value="Продати" />
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function deleteMe() {
+    fetch('/api/items/{{ item.id }}', {method: 'DELETE'})
+    alert("Deleted!")
+    window.location.href = "/"
+}
+</script>
+{% endblock %}

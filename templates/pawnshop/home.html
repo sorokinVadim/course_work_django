@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <main>
+    <div class="clients-list">
+    {% if clients %}
+         <h2>База клієнтів</h2>
+        {% for client in clients %}
+            <p><a href="{{ client.get_absolute_url }}">{{ client }}</a></p>
+        {% endfor %}
+    {% else %}
+        <h2>База клієнтів порожня!</h2>
+    {% endif %}
+   </div>
+    <div class="items-list">
+        {% if items %}
+            <h2>Речі для продажу:</h2>
+            {% for item in items %}
+                <a href="{{ item.get_absolute_url }}"> {{ item }}</a>
+            {% endfor %}
+        {% else %}
+            <h2>Речей для продажу поки що немає!</h2>
+        {% endif %}
+    </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Новий предмет
+{% endblock %}
+
+{% block content %}
+     {% if step == '1' %}<form method="post" id="client-form">
+     {% else %}<form method="post" id="item-form">
+     {% endif %}
+         {% csrf_token %}
+         {{ form.as_p }}
+        {% if step == '1' %}
+            <button type="submit" name="client-form">Далі</button>
+            <a href="{% url 'new_item' %}?step=2"><input type="button" value="Клієнт вже зареєстрован"></a>
+        {% else %}
+            <button type="submit" name="item-form">Додати предмет</button>
+        {% endif %}
+     </form>
+{% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script src="{% static 'js/item_new.js' %}"></script>
+{% endblock %}

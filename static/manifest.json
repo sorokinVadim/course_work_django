@@ -1,0 +1,10 @@
+{
+  "name": "Cource work: Pawn shop",
+  "short_name": "Pawn shop",
+  "theme_color": "#066163",
+  "background_color": "#383838",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/"
+}
