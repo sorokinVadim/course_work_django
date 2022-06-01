@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Пошук
+{% endblock %}
+
+{% block content %}
+   <main>
+        <form method="POST" action="" class="item-field">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="search">Пошук</button>
+            {% if message %}
+                <p style="color: white">{{ message }}</p>
+            {% endif %}
+        </form>
+   <div class="results">
+       {% for item in items %}
+           <p><a href="{{ item.get_absolute_url }}" class="item-field">{{ item }}. Ціна: {{ item.estimated_cost }}</a></p>
+       {% endfor %}
+   </div>
+
+   </main>
+{% endblock %}

@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block content %}
-     {% if step == '1' %}<form method="post" id="client-form">
-     {% else %}<form method="post" id="item-form">
+    <div class="item-info">
+     {% if step == '1' %}<form method="post" id="client-form" class="item-field">
+     {% else %}<form method="post" class="item-field" id="item-form">
      {% endif %}
          {% csrf_token %}
          {{ form.as_p }}
@@ -17,6 +18,7 @@
             <button type="submit" name="item-form">Додати предмет</button>
         {% endif %}
      </form>
+    </div>
 {% endblock %}
 
 {% block scripts %}

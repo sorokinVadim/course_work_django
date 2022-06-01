@@ -5,7 +5,7 @@
     <main>
     <div class="clients-list">
     {% if clients %}
-         <h2>База клієнтів</h2>
+        <a href="/api/clients/"><h2>База клієнтів</h2></a>
         {% for client in clients %}
             <p><a href="{{ client.get_absolute_url }}">{{ client }}</a></p>
         {% endfor %}
@@ -15,9 +15,9 @@
    </div>
     <div class="items-list">
         {% if items %}
-            <h2>Речі для продажу:</h2>
+            <a href="/api/items"><h2>Речі для продажу:</h2></a>
             {% for item in items %}
-                <a href="{{ item.get_absolute_url }}"> {{ item }}</a>
+                <p><a href="{{ item.get_absolute_url }}"> {{ item }}</a></p>
             {% endfor %}
         {% else %}
             <h2>Речей для продажу поки що немає!</h2>

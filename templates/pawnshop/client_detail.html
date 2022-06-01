@@ -11,6 +11,7 @@
     {% for item in client.item_set.all %}
         <p class="item-field"><a href="{{ item.get_absolute_url }}">{{ item }}</a></p>
     {% endfor %}
+    <a href="{{ client.get_edit_url }}"><input class="delete" type="button" value="Редагувати"></a>
     <input type="button" class="delete" onclick="deleteMe()" value="Видалити клiєнта">
     </div>
 {% endblock %}
@@ -19,7 +20,7 @@
     <script>
         function deleteMe() {
             fetch('/api/clients/{{ client.id }}', {method: 'DELETE'})
-            alert("Deleted!")
+            alert("Клієнт видален")
             window.location.href = "/"
         }
     </script>

@@ -3,4 +3,5 @@ celery-worker:
 celery-beat:
     celery -A course_work beat -l INFO -f celery_beat.log
 web:
-    python manage.py runserver
+    gunicorn course_work.asgi:application -k uvicorn.workers.UvicornWorker
+

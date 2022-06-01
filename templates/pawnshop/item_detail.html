@@ -16,6 +16,8 @@
     <p class="item-field">Оціночна вартість {{ item.estimated_cost }}</p>
         {% if item.owner %}
             <input type="button" class="delete" onclick="deleteMe()" value="Повернути" />
+            <a href="{{ item.get_edit_url }}"><input class="delete" type="button" value="Редагувати"></a>
+            <a href="{{ item.get_consignment_url }}" target="_blank"><input class="delete" type="button" value="Накладна"></a>
         {% else %}
             <input type="button" class="delete" onclick="deleteMe()" value="Продати" />
         {% endif %}
@@ -27,7 +29,11 @@
 <script>
 function deleteMe() {
     fetch('/api/items/{{ item.id }}', {method: 'DELETE'})
-    alert("Deleted!")
+    {% if item.owner %}
+        alert("Предмет повернут")
+    {% else %}
+        alert("Предмет успішно продан")
+    {% endif %}
     window.location.href = "/"
 }
 </script>
