@@ -3,7 +3,6 @@ import io
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.http.response import FileResponse
-from weasyprint import HTML
 from markdown2 import markdown
 from urllib.parse import urlencode
 from .forms import *
@@ -28,9 +27,8 @@ def get_consignment(request, item_pk: int):
     client = item.owner
     data = markdown(get_text(client, item))
     file = io.BytesIO()
-    HTML(string=data).write_pdf(file)
     file.seek(0)
-    return FileResponse(file, as_attachment=True, filename=f"{item.name}.pdf")
+    return redirect("/")
 
 
 def home(request):
