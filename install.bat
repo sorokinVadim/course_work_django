@@ -1,6 +1,6 @@
 pip install virtualenv
 virtualenv pawnshop_env
-.\course\Scripts\activate
+.\pawnshop_env\Scripts\activate
 
 pip install -r requirements.txt
 python manage.py makemigrations
